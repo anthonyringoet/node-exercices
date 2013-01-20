@@ -14,7 +14,17 @@ http.createServer(function (request, response){
   var lookup = path.basename(decodeURI(request.url)) || 'index.html',
     f = 'static/' + lookup;
 
+  if(request.url == '/favicon.ico'){
+    // pretty harsh handling
+    // dont want the requests in this example
+    response.end();
+    return;
+  }
+
+
   fs.exists(f, function(exists){
+    console.log(exists ? lookup + ' is there' : lookup + ' doesn\'t exist');
+
     if(exists){
       fs.readFile(f, function(err, data){
         var headers = {'Content-type': mimeTypes[path. extname(lookup)]};
@@ -34,6 +44,5 @@ http.createServer(function (request, response){
       response.writeHead(404);
       response.end('404 - Item not found');
     }
-    console.log(exists ? lookup + ' is there' : lookup + ' doesn\'t exist');
   });
 }).listen(1337);
