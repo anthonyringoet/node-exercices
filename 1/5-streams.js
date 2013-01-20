@@ -54,6 +54,9 @@ http.createServer(function (request, response){
         var bufferOffset = 0;
         cache[f] = {content: new Buffer(stats.size)};
         s.on('data', function(chunk){
+          // default buffersize is 64kb
+          // for sizes smaller then this
+          // only one data event will be triggered
           chunk.copy(cache[f].content, bufferOffset);
           bufferOffset += chunk.length;
         });
