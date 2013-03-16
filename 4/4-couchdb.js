@@ -11,6 +11,7 @@ function errorHandler(err){
     process.exit();
   }
 }
+
 function printHelp(){
   console.log('Add quotes to the databases\n -----------\n first argument: author\n second argument: quote');
 }
@@ -20,6 +21,7 @@ function checkAndSave(err){
 
   if(params.author && params.quote){
     db.save({ author: params.author, quote: params.quote}, errorHandler);
+    return;
   }
   else{
     printHelp();
