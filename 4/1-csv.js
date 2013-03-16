@@ -6,7 +6,7 @@ var options = {
 };
 var writer = csv.createCsvFileWriter('data.csv', options);
 
-// write to csv
+// write to csv on disk
 var data = [['pink floyd', 'marble sounds', 'kings of leon'], ['explosions in the sky', 'mogwai', 'godspeed you black emperor', 'codes in the clouds', 'mono']];
 
 data.forEach(function(rec){
